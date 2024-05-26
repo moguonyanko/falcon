@@ -1,7 +1,10 @@
 import azure.functions as func
 import logging
 
+from database.students import students
+ 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app.register_functions(students)
 
 @app.route(route="HelloWorld")
 def HelloWorld(req: func.HttpRequest) -> func.HttpResponse:
