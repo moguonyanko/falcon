@@ -2,9 +2,11 @@ import azure.functions as func
 import logging
 
 from database.students import students
- 
+from streaming.streaming_download import streaming_download 
+
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 app.register_functions(students)
+app.register_functions(streaming_download)
 
 @app.route(route="HelloWorld")
 def HelloWorld(req: func.HttpRequest) -> func.HttpResponse:
