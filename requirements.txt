@@ -5,3 +5,4 @@
 azure-functions
 mariadb
 azure-functions-extension-fastapi
+shapely

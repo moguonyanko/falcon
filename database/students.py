@@ -22,9 +22,9 @@ def get_students() -> list[any]:
     students = cursor.fetchall()
     return students        
 
-@students.route(route="Students", auth_level=func.AuthLevel.FUNCTION)
+@students.route(route="students", auth_level=func.AuthLevel.FUNCTION)
 def Students(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Students request.')
+    logging.info('students request')
 
     students = get_students()
 

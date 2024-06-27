@@ -3,14 +3,16 @@ import logging
 
 from database.students import students
 #from streaming.streaming_download import streaming_download 
+from gis.area import area
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 app.register_functions(students)
 #app.register_functions(streaming_download)
+app.register_functions(area)
 
-@app.route(route="HelloWorld")
+@app.route(route="helloworld")
 def HelloWorld(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('HelloWorld request.')
+    logging.info('helloworld request')
 
     name = req.params.get('name')
     if not name:
