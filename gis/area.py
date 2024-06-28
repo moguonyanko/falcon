@@ -17,7 +17,7 @@ def get_area(req: func.HttpRequest) -> func.HttpResponse:
 
     points = [(10, 20), (20, 40), (30, 30), (40, 10), (30, 0), (20, 10)]
     polygon = Polygon(points)
-    # response = f'\{"area": {polygon.area}\}'
+    response = f'{{"area": {polygon.area}}}'
 
     # name = req.params.get('name')
     # if not name:
@@ -28,7 +28,7 @@ def get_area(req: func.HttpRequest) -> func.HttpResponse:
     #     else:
     #         name = req_body.get('name')
 
-    return func.HttpResponse(str(polygon.area),
+    return func.HttpResponse(response,
                              headers={
                                  "Content-Type": "application/json"
                              })
