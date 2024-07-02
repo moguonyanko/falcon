@@ -1,7 +1,7 @@
-# Register this blueprint by adding the following line of code 
-# to your entry point file.  
-# app.register_functions(area) 
-# 
+# Register this blueprint by adding the following line of code
+# to your entry point file.
+# app.register_functions(area)
+#
 # Please refer to https://aka.ms/azure-functions-python-blueprints
 
 import logging
@@ -11,22 +11,18 @@ from shapely.geometry import Polygon
 
 area = func.Blueprint()
 
-@area.route(route="area", auth_level=func.AuthLevel.FUNCTION)
+@area.route(route="calcarea", auth_level=func.AuthLevel.FUNCTION)
 def get_area(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('area request')
 
-    points = [(10, 20), (20, 40), (30, 30), (40, 10), (30, 0), (20, 10)]
-    polygon = Polygon(points)
-    response = f'{{"area": {polygon.area}}}'
-
-    # name = req.params.get('name')
-    # if not name:
-    #     try:
-    #         req_body = req.get_json()
-    #     except ValueError:
-    #         pass
-    #     else:
-    #         name = req_body.get('name')
+    try:
+        req_body = req.get_json()
+        coordinates = req_body['coordinates']
+        polygon = Polygon(coordinates[0])
+        #TODO: 明らかにおかしな面積が返される。単位の問題か？
+        response = f'{{"area": {polygon.area}}}'
+    except ValueError as e:
+        print(e)
 
     return func.HttpResponse(response,
                              headers={
