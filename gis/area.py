@@ -19,7 +19,6 @@ def get_area(req: func.HttpRequest) -> func.HttpResponse:
         req_body = req.get_json()
         coordinates = req_body['coordinates']
         polygon = Polygon(coordinates[0])
-        #TODO: 明らかにおかしな面積が返される。単位の問題か？
         response = f'{{"area": {polygon.area}}}'
     except ValueError as e:
         print(e)
