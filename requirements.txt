@@ -7,3 +7,4 @@ mariadb
 azure-functions-extension-fastapi
 shapely
 pyproj
+osmnx
